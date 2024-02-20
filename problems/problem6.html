@@ -23,6 +23,14 @@
 <script type="module">
     import {ThreeEngine} from "../js/utils/utils_three.js";
 
+    let engine = ThreeEngine.new_default_2d();
+    engine.animation_loop(() => {
+        let theta = 2 * Math.PI * engine.get_time_elapsed();
+        let pt = [Math.cos(theta), Math.sin(theta), 0];
+        engine.draw_debug_sphere(pt, 0.05, 0xeb9e34, 0.9);     // draw sphere with rotation period of 1s
+        engine.draw_debug_vector([0,0,0], pt);
+    });
+
     // todo: using the parametric version of a circle [r*cos(\theta), r*sin(\theta)], draw a sphere (of radius 0.05, any color opacity you want)
     // todo: in a 2D ThreeEngine scene such that it revolves around the origin (0,0) at an orbit one unit away.  One revolution around
     // todo: the center should always take 1 second.  Also, draw a vector rooted at the origin so that it's always pointing at the sphere
